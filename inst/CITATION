@@ -1,0 +1,16 @@
+citHeader("To cite 'bigdatadist' package in publications use:")
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citEntry(entry="Manual",
+         title = "Distances for Machine Learning and Statistics in the Context of Big Data",
+         author = personList(as.person("Martos G. and Hernandez N.")),
+         year = year,
+         note = vers,
+
+         textVersion =
+         paste("Martos G. and Hernandez N.(",
+               year,
+               "). Distances for Machine Learning and Statistics in the Context of Big Data.",
+               vers, ".", sep=""))

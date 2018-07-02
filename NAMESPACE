@@ -1,0 +1,29 @@
+useDynLib(bigdatadist, .registration = TRUE)
+
+import(MASS,
+       FNN,
+       rrcov,
+       pdist
+)
+
+importFrom("stats", "as.dist", "dist", "median", "quantile")
+importFrom("graphics", "axis", "matplot")
+
+export(fdframe,
+       rkhs,
+       entropy,
+       levelsetdist,
+       gmdepth,
+       gmdepth.fd,
+       entropy.fd
+)
+
+
+## REGISTER S3 METHODS
+S3method(fdframe, default)
+S3method(plot, fdframe)
+
+S3method(rkhs, default)
+S3method(plot, rkhs)
+S3method(print, rkhs)
+
