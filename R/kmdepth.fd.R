@@ -17,21 +17,46 @@
 ##  http://www.r-project.org/Licenses/                                        ##
 ##  ========================================================================  ##
 
-entropy <-function(X,alpha = 2, k.neighbor,scale = FALSE){
-  X=as.matrix(X)
-  n  =  dim(X)[1]
+kmdepth.fd <- function(fdframe, gamma = 1, kerfunc = "rbf" ,
+                        kerpar = list(sigma = 1, bias = 0, degree = 2) ,
+                        d = 2 , robust=TRUE , h=0.1 , nsamp=250)  {
+
+  # 1) Representation Step
+  rep <- rkhs(fdframe, gamma, kerfunc, kerpar)
   
-  if(scale==TRUE | scale==T){X=scale(X)}else{X=X}
+  # 2) Computing the KMD
   
-  Knn.distances = knn.dist(X, k=k.neighbor)
-  v_k = as.matrix(rowMeans(Knn.distances),ncol=1)
+  lambda.trunc=rep$lambda.star[,1:min(d,rep$fdframe$n)]
   
-  l.entropy=log(1+v_k^alpha)/abs(1-alpha)
-  entropy=log(sum(1+v_k^alpha))/abs(1-alpha)
+  # 2) Computing the KMD
   
-  # Organizing the outputs:
-  output <- list(local.entropy = l.entropy, entropy = entropy,
-                 call =match.call() ) 
+  Func.KMD=matrix(0,rep$fdframe$D,2)
+  
+  if (robust==TRUE){
+  
+  KMD.center=CovMcd(lambda.trunc, alpha=1-h,nsamp=nsamp)@center
+  KMD.cov=CovMcd(lambda.trunc, alpha=1-h,nsamp=nsamp)@cov
+  
+  Func.KMD[,1]=seq(1,rep$fdframe$D)
+  Func.KMD[,2]=1/sqrt(mahalanobis(lambda.trunc, center=KMD.center, cov=ginv(KMD.cov), inverted=TRUE))
+  
+  } else {
+    
+    KMD.center=matrix(0,1,dim(lambda.trunc)[2])
+    for (i in 1:length(KMD.center)){KMD.center[i]=median(lambda.trunc[,i])}
+    KMD.cov=var(lambda.trunc)
+    
+    Func.KMD[,1]=seq(1,rep$fdframe$D)
+    Func.KMD[,2]=1/sqrt(mahalanobis(lambda.trunc, center=KMD.center, cov=ginv(KMD.cov), inverted=TRUE))
+  
+    
+  }
+  
+  # 3) Organizing the outputs:
+  
+  output <- list(depth = Func.KMD,
+                 call =match.call()) 
   class(output) <- "list"
   return(output)
 }
+  

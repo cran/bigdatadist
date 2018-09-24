@@ -6,16 +6,17 @@ import(MASS,
        pdist
 )
 
-importFrom("stats", "as.dist", "dist", "median", "quantile")
+importFrom("stats", "as.dist", "dist", "median", "quantile","mahalanobis","var")
 importFrom("graphics", "axis", "matplot")
-
+importFrom("rrcov", "CovMcd")
 export(fdframe,
        rkhs,
        entropy,
        levelsetdist,
        gmdepth,
        gmdepth.fd,
-       entropy.fd
+       entropy.fd,
+       kmdepth.fd
 )
 
 

@@ -1,11 +1,12 @@
-5d73e6f7aa5fd69becdf9e75ba7fd82d *DESCRIPTION
-2cdb501e1609223a7ef194c63874bf45 *NAMESPACE
+0c391e74dd08c9970111ae44876cf35d *DESCRIPTION
+3060d571568e32e0dd27e36787236970 *NAMESPACE
 da005f1223ccc3d3bae3bec8386964f5 *R/entropy.R
 a375fccdeaf7e9595cad16ed2d5aaf2f *R/entropy.fd.R
 1ca9a20bb48a6e6275535645e1dad0d5 *R/fdframe.R
 680a696b1226689a98a216d39f2e43c6 *R/gmdepth.R
-2c51af07c5cd8ed0f14874914814c56d *R/gmdepth.fd.R
+e8d63d370538fb290cf91b73e84b0201 *R/gmdepth.fd.R
 877280ed172aaabc55e7188720b251ad *R/hidden.R
+51c6c65348d8d4d2bead0fd8c1054f49 *R/kmdepth.fd.R
 4b06c6652d19064ae1a81dc537f507ee *R/levelsetdist.R
 2c3056e4b21a1eae909158f32267328b *R/rkhs.R
 76e413a3f0d2083ebec78881bbfc98a3 *R/workhorse.R
@@ -18,6 +19,7 @@ ec7edf08fef20e4e6703e6c273af9787 *man/entropy.fd.Rd
 c5ba28d7603637458ff039bf292a0da4 *man/fdframe.Rd
 0f9e27e552836ea7246dca7b3b24c7ac *man/gmdepth.Rd
 d3703e6a4256012165f8df7c0459f8dd *man/gmdepth.fd.Rd
+4d000a2f38d98880fd723858f7d9c07c *man/kmdepth.fd.Rd
 1656268fb8f374f6606b9f9356d32d1d *man/levelsetdist.Rd
 c1b8cb0118f1dca02f674b3898054731 *man/merval.Rd
 611beb11cfa8fab4780f1b42fa900d2b *man/rkhs.Rd

@@ -32,10 +32,9 @@ gmdepth.fd <- function(fdframe, gamma = 1, kerfunc = "rbf" ,
   Func.GMD=matrix(0,rep$fdframe$D,2)
   Func.GMD[,1]=seq(1,rep$fdframe$D)
   Func.GMD[,2]=gmdepth(A=lambda.trunc,b=NULL,resol,k.neighbor)$distance
-  ord=as.matrix(Func.GMD[order(-Func.GMD[,2]),])
   
   # 3) Organizing the outputs:
-  output <- list(depth = exp(-ord[,2]), distance = ord[,2], 
+  output <- list(depth = exp(-Func.GMD[,2]), distance = Func.GMD[,2], 
                  call =match.call() ) 
   
   class(output) <- "list"
